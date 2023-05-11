@@ -21,15 +21,19 @@
    <body>
       <div id="player" hidden="hidden"></div>
       <div id="player2" hidden="hidden"></div>
+      <div id="player3" hidden="hidden"></div>
+      <div id="player4" hidden="hidden"></div>
+      <div id="player5" hidden="hidden"></div>
 
       <div id="dock">
         <a href="#" onclick="airplane()">PLANE</a>
         <a href="#" onclick="forest()">FOREST</a>
         <a href="#" onclick="tree()">TREE</a>
         <a href="#" onclick="city()">CITY</a>
+        <a href="#" onclick="harbour()">TREETOPS</a>
       </div>
 
-
+      
 
       <script>
           var tag = document.createElement('script');
@@ -38,18 +42,45 @@
           var firstScriptTag = document.getElementsByTagName('script')[0];
           firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+
+          
+          
+
           var planeplayer;
           var forestplayer;
+          var treeplayer;
+          var cityplayer;
+          var harbourplayer;
+
          function onYouTubeIframeAPIReady() {
             planeplayer = new YT.Player('player', {
              height: '390',
              width: '640',
              videoId: 'WbEGmghn_jo',});
 
+              //morning comes - 60
               forestplayer = new YT.Player('player2', {
               height: '390',
               width: '640',
               videoId: 'I4JcoSZOBZU',});
+
+              // tree dungeon - 2.5
+              treeplayer = new YT.Player('player3', {
+              height: '390',
+              width: '640',
+              videoId: 'NDyTSx1kUcQ',});
+
+              //subway - 3
+              cityplayer = new YT.Player('player4', {
+              height: '390',
+              width: '640',
+              videoId: 'J1YTQvtmsjg',});
+
+              //above the treetops - 30
+              harbourplayer = new YT.Player('player5', {
+              height: '390',
+              width: '640',
+              videoId: 'pZo5dcUjJeE',});
           }
 
         
@@ -57,13 +88,21 @@
 
           function tree() {
             document.body.style.backgroundImage = "url(tree.jpg)";
-            planeplayer.pauseVideo();
             forestplayer.pauseVideo();
+            planeplayer.pauseVideo();
+            cityplayer.pauseVideo();
+            harbourplayer.pauseVideo();
+
+            treeplayer.playVideo();
           }
 
           function forest() {
             document.body.style.backgroundImage = "url(forest.jpg)";
             planeplayer.pauseVideo();
+            treeplayer.pauseVideo();
+            cityplayer.pauseVideo();
+            harbourplayer.pauseVideo();
+
             forestplayer.playVideo();
           }
 
@@ -71,12 +110,32 @@
             document.body.style.backgroundImage = "url(city.jpg)";
             planeplayer.pauseVideo();
             forestplayer.pauseVideo();
+            treeplayer.pauseVideo();
+            harbourplayer.pauseVideo();
+
+            cityplayer.playVideo();
           }
 
           function airplane() {
             document.body.style.backgroundImage = "url(plane.jpg)";
-            planeplayer.playVideo();
+            
             forestplayer.pauseVideo();
+            treeplayer.pauseVideo();
+            cityplayer.pauseVideo();
+            harbourplayer.pauseVideo();
+
+            planeplayer.playVideo();
+          }
+
+          function harbour() {
+            document.body.style.backgroundImage = "url(treetops.jpg)";
+            
+            forestplayer.pauseVideo();
+            treeplayer.pauseVideo();
+            cityplayer.pauseVideo();
+            planeplayer.pauseVideo();
+
+            harbourplayer.playVideo();
           }
          </script>
 
