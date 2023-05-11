@@ -3,7 +3,11 @@
     <head>
         <style>
             body {
-                background-size: cover;
+                background: url(plane.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
             }
             #dock {
                 width: 500px;
@@ -56,85 +60,186 @@
             planeplayer = new YT.Player('player', {
              height: '390',
              width: '640',
-             videoId: 'WbEGmghn_jo',});
+             videoId: 'WbEGmghn_jo',
+             events: {
+                'onStateChange' : onplaneplayerstatechange
+             }
+            });
 
               //morning comes - 60
               forestplayer = new YT.Player('player2', {
               height: '390',
               width: '640',
-              videoId: 'I4JcoSZOBZU',});
+              videoId: 'I4JcoSZOBZU',
+              events: {
+                'onStateChange' : onforestplayerstatechange
+              }
+            });
 
               // tree dungeon - 2.5
               treeplayer = new YT.Player('player3', {
               height: '390',
               width: '640',
-              videoId: 'NDyTSx1kUcQ',});
+              videoId: 'NDyTSx1kUcQ',
+              events: {
+                'onStateChange' : ontreeplayerstatechange
+              }
+            });
 
               //subway - 3
               cityplayer = new YT.Player('player4', {
               height: '390',
               width: '640',
-              videoId: 'J1YTQvtmsjg',});
+              videoId: 'J1YTQvtmsjg',
+              events: {
+                'onStateChange' : oncityplayerstatechange
+              }
+            });
 
               //above the treetops - 30
               harbourplayer = new YT.Player('player5', {
               height: '390',
               width: '640',
-              videoId: 'pZo5dcUjJeE',});
+              videoId: 'pZo5dcUjJeE',
+              events: {
+                'onStateChange' : onharbourplayerstatechange
+              }
+            });
           }
 
-        
+        function ontreeplayerstatechange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                // forestplayer.pauseVideo();
+                // planeplayer.pauseVideo();
+                // cityplayer.pauseVideo();
+                // harbourplayer.pauseVideo();
+
+                console.log("tree loop");
+                treeplayer.playVideo();
+            }
+        }
+
+        function onforestplayerstatechange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                
+                // planeplayer.pauseVideo();
+                // cityplayer.pauseVideo();
+                // harbourplayer.pauseVideo();
+                // treeplayer.pauseVideo();
+
+                console.log("forest loop");
+
+                forestplayer.playVideo();
+            }
+        }
+
+        function oncityplayerstatechange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                
+                // planeplayer.pauseVideo();
+                // forestplayer.pauseVideo();
+                // harbourplayer.pauseVideo();
+                // treeplayer.pauseVideo();
+
+                console.log("city loop");
+                cityplayer.playVideo();
+            }
+        }
+
+        function onplaneplayerstatechange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                
+                // cityplayer.pauseVideo();
+                // forestplayer.pauseVideo();
+                // harbourplayer.pauseVideo();
+                // treeplayer.pauseVideo();
+
+                console.log("plane loop");
+                planeplayer.playVideo();
+            }
+        }
+
+        function onharbourplayerstatechange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                
+                // cityplayer.pauseVideo();
+                // forestplayer.pauseVideo();
+                // planeplayer.pauseVideo();
+                // treeplayer.pauseVideo();
+
+                console.log("harbour loop");
+                harbourplayer.playVideo();
+            }
+        }
 
 
           function tree() {
             document.body.style.backgroundImage = "url(tree.jpg)";
+
+            console.log("tree");
+
             forestplayer.pauseVideo();
             planeplayer.pauseVideo();
             cityplayer.pauseVideo();
             harbourplayer.pauseVideo();
 
+            treeplayer.setLoop(true);
             treeplayer.playVideo();
           }
 
           function forest() {
             document.body.style.backgroundImage = "url(forest.jpg)";
+
+            console.log("forest");
+
             planeplayer.pauseVideo();
             treeplayer.pauseVideo();
             cityplayer.pauseVideo();
             harbourplayer.pauseVideo();
 
+            forestplayer.setLoop(true);
             forestplayer.playVideo();
           }
 
           function city() {
             document.body.style.backgroundImage = "url(city.jpg)";
+
+            console.log("city");
+
             planeplayer.pauseVideo();
             forestplayer.pauseVideo();
             treeplayer.pauseVideo();
             harbourplayer.pauseVideo();
 
+            cityplayer.setLoop(true);
             cityplayer.playVideo();
           }
 
           function airplane() {
             document.body.style.backgroundImage = "url(plane.jpg)";
             
+            console.log("airplane");
+
             forestplayer.pauseVideo();
             treeplayer.pauseVideo();
             cityplayer.pauseVideo();
             harbourplayer.pauseVideo();
 
+            planeplayer.setLoop(true);
             planeplayer.playVideo();
           }
 
           function harbour() {
             document.body.style.backgroundImage = "url(treetops.jpg)";
             
+            console.log("harbour");
+
             forestplayer.pauseVideo();
             treeplayer.pauseVideo();
             cityplayer.pauseVideo();
             planeplayer.pauseVideo();
 
+            harbourplayer.setLoop(true);
             harbourplayer.playVideo();
           }
          </script>
