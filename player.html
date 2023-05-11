@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background-size: cover;
+            }
+            #dock {
+                width: 500px;
+                height: 80px;
+                background-color:gainsboro;
+                position: absolute;
+                left:0px;
+                right: 0px;
+                margin-left: auto;
+                margin-right: auto;
+                bottom: 20px;
+            }
+        </style>
+    </head>
+   <body>
+      <div id="player" hidden="hidden"></div>
+      <div id="player2" hidden="hidden"></div>
+
+      <div id="dock">
+        <a href="#" onclick="airplane()">PLANE</a>
+        <a href="#" onclick="forest()">FOREST</a>
+        <a href="#" onclick="tree()">TREE</a>
+        <a href="#" onclick="city()">CITY</a>
+      </div>
+
+
+
+      <script>
+          var tag = document.createElement('script');
+
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          var planeplayer;
+          var forestplayer;
+         function onYouTubeIframeAPIReady() {
+            planeplayer = new YT.Player('player', {
+             height: '390',
+             width: '640',
+             videoId: 'WbEGmghn_jo',});
+
+              forestplayer = new YT.Player('player2', {
+              height: '390',
+              width: '640',
+              videoId: 'I4JcoSZOBZU',});
+          }
+
+        
+
+
+          function tree() {
+            document.body.style.backgroundImage = "url(tree.jpg)";
+            planeplayer.pauseVideo();
+            forestplayer.pauseVideo();
+          }
+
+          function forest() {
+            document.body.style.backgroundImage = "url(forest.jpg)";
+            planeplayer.pauseVideo();
+            forestplayer.playVideo();
+          }
+
+          function city() {
+            document.body.style.backgroundImage = "url(city.jpg)";
+            planeplayer.pauseVideo();
+            forestplayer.pauseVideo();
+          }
+
+          function airplane() {
+            document.body.style.backgroundImage = "url(plane.jpg)";
+            planeplayer.playVideo();
+            forestplayer.pauseVideo();
+          }
+         </script>
+
+    <!-- <audio controls autoplay=false hidden>
+        <source src="takeoff.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio> -->
+
+
+      <!-- <a href="#" onclick="forestplayer.playVideo()">Play Youtube Video</a>
+      <a href="#" onclick="stop1()">Pause Youtube Video</a> -->
+   </body>
+</html>
